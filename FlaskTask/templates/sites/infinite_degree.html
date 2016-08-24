@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+<ul>
+{% for page in next_pages %}
+<li><a href="{{ url_for('infinite_degree', outdegree=degree, page_number=page) }}">Another page: {{ page }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Has Two Descriptions{% endblock %}
+{% block head %}
+	{{ super() }}
+  <meta name='description' content='This is a first description'>
+  <meta name='description' content='This is a second description'>
+{% endblock %}
+{% block content %}
+  <p>This is a document with two descriptions in the head.</p>
+{% endblock %}

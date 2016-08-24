@@ -1,0 +1,274 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <table class="table table-hover" id="robots">
+    <h3>Robots</h3>
+    <subtitle>Routes: /xrobots/&lt;tag&gt; or /robots/&lt;tag&gt;</subtitle>
+    <caption>Learning about (x)robot tags and meta tags<caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('robots', tag='none') }}">{{ domain }}/robots/none</a></td>
+        <td>Meta robots tag none</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('robots', tag='nofollow') }}">{{ domain }}/robots/nofollow</a></td>
+        <td>Meta robots tag nofollow</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('robots', tag='noindex') }}">{{ domain }}/robots/noindex</a></td>
+        <td>Meta robots tag noindex</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('robots', tag='multiple') }}">{{ domain }}/robots/multiple</a></td>
+        <td>Three different meta robots tags.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('robots', tag='capitalization') }}">{{ domain }}/robots/capitalization</a></td>
+        <td>Meta robots tag is in all caps but should still be honored.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('xrobots', tag='none') }}">{{ domain }}/xrobots/none</a></td>
+        <td>Robots directive set in X-Robots-Tag header</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('xrobots', tag='nofollow') }}">{{ domain }}/xrobots/nofollow</a></td>
+        <td>Robots directive set in X-Robots-Tag header</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('xrobots', tag='noindex') }}">{{ domain }}/xrobots/noindex</a></td>
+        <td>Robots directive set in X-Robots-Tag header</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="links">
+    <h3>Links</h3>
+    <subtitle>Route: /links/&lt;issue&gt;<subtitle>
+    <caption>Some of the issues that can go wrong with links<caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('links', issue='bad_uri') }}">{{ domain }}/links/bad_uri</a></td>
+        <td>This example uses a bad port number.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='base') }}">{{ domain }}/links/base</a></td>
+        <td>The &lt;base&gt; tag allows the page to specify another url to use as the base of relative urls on the page,
+            rather than the url of the page itself</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='canonical') }}">{{ domain }}/links/canonical</a></td>
+        <td>The &lt;canonical&gt; tag specifies the canonical url for the page that's been visited</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='data_uri') }}">{{ domain }}/links/data_uri</a></td>
+        <td>Encoded data (like images) into so-called data URIs.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='schemes') }}">{{ domain }}/links/schemes</a></td>
+        <td>The schemes of links aren't limited to http, https, etc. -- they can be things like 'mailto', 'tel', etc.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='body_canonical') }}">{{ domain }}/links/body_canonical</a></td>
+        <td>Honor canonical, despite it in the body.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='multiple') }}">{{ domain }}/links/multiple</a></td>
+        <td>This page has multiple canonical links.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='malformed_hrefs') }}">{{ domain }}/links/malformed_hrefs</a></td>
+        <td>The space around this URL should be stripped.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='nofollow') }}">{{ domain }}/links/nofollow</a></td>
+        <td>Href link that is tagged nofollow.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='relative_base') }}">{{ domain }}/links/relative_base</a></td>
+        <td>Base URL is relative.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='long_label') }}">{{ domain }}/links/long_label</a></td>
+        <td>Label is too long, should be at most 63 characters.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='default_ports') }}">{{ domain }}/links/default_ports</a></td>
+        <td>These links use the default ports for their schemes.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='internal') }}">{{ domain }}/links/internal</a></td>
+        <td>This page has internal links.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('links', issue='href_encoding') }}">{{ domain }}/links/href_encoding</a></td>
+        <td>This page has some invisible characters here, that keep the href from being normalized correctly.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="encoding">
+    <h3>Encoding</h3>
+    <subtitle>Route: /encoding/&lt;charset&gt; or /encoding/type/&lt;encoding_type&gt;<subtitle>
+    <caption>How to change the encoding on a page</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for charset in charset_list %}
+      <tr>
+        <td><a href="{{ url_for('encoding', charset= charset) }}">{{ domain }}/encoding/{{ charset }}</a></td>
+        <td>This is a page that should be presented as encoded in {{ charset }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td><a href="{{ url_for('compression', encoding_type='gzip') }}">{{ domain }}/encoding_type/gzip</a></td>
+        <td>An example of Gzip-Encoded content</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('compression', encoding_type='deflate') }}">{{ domain }}/encoding_type/deflate</a></td>
+        <td>An example of Deflate-Encoded content</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('compression', encoding_type='Zlib') }}">{{ domain }}/encoding_type/Zlib</a></td>
+        <td>An example of Zlib-Encoded content</td>
+      </tr>
+    </tbody>
+    </table>
+
+    <table class="table table-hover" id="status_codes">
+    <h3>Status Codes</h3>
+    <subtitle>Route: /status_codes/&lt;code&gt;<subtitle>
+    <caption>How to change the status code on a page</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for status in status_list %}
+      <tr>
+        <td><a href="{{ url_for('status_codes', code=status) }}">{{ domain }}/status_code/{{ status }}</a></td>
+        <td>This is a page that should be presented with the status code {{ status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="header">
+    <h3>Header Issues</h3>
+    <caption>Some issues that can go wrong with headers</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('truncated') }}">{{ domain }}/headers/timeout_truncated</a></td>
+        <td>A truncated response advertises a certain amount of data to be sent but then sends less than that,
+        causing the request to time out</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('refresh') }}">{{ domain }}/headers/refresh</a></td>
+        <td>Sets a refresh header</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="head">
+    <h3>Html Head Issues</h3>
+    <caption>Some issues that can go wrong in a page head</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('head', issue='bad_entities') }}">{{ domain }}/head/bad_entities</a></td>
+        <td>The title has a malformed entity.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('head', issue='description_in_body') }}">{{ domain }}/head/description_in_body</a></td>
+        <td>The meta description it not in the head.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('head', issue='multiple_descriptions') }}">{{ domain }}/head/multiple_descriptions</a></td>
+        <td>This is a document with two descriptions.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('head', issue='closing_html') }}">{{ domain }}/head/closing_html</a></td>
+        <td>This page starts with a self closing html tag</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="misc">
+    <h3>Misc</h3>
+    <caption>Other pages with issues</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Issue Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('delay_response', delay=3) }}">{{ domain }}/delay</a></td>
+        <td>Delays responding for min(n, 90) seconds.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('missing_location') }}">{{ domain }}/redirects/missing_location</a></td>
+        <td>The `Location` header is not always present.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('relative_redirects') }}">{{ domain }}/redirects/relative</a></td>
+        <td>This page sets a relative location for redirects</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('empty') }}">{{ domain }}/empty</a></td>
+        <td>This page is completely empty</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover" id="misc">
+    <h3>Large Sites</h3>
+    <caption>Links into whole sites (nofollow by default)</caption>
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ url_for('infinite_site', page_number=0) }}" rel="nofollow">{{ domain }}/site/infinite</a></td>
+        <td>Infinite site where each page links to one more.</td>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('infinite_degree', outdegree=10, page_number=0) }}"
+                rel="nofollow">{{ domain }}/site/infinite_degree/10/0</a></td>
+        <td>Infinite site where each page has a specified degree.</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

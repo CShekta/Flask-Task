@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel='canonical' href='http://example.com/first'/>
+  <link rel='canonical' href='http://example.com/second'/>
+{% endblock %}
+{% block content %}
+  <p>This page has multiple canonical links.</p>
+{% endblock %}

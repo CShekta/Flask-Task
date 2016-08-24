@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+  <h5>These links use the default ports for their schemes.</h5>
+   <p><a href='http://foo.com:80/'>default http port</a></p>
+   <p><a href='https://foo.com:443/'>default https port</a></p>
+   <p><a href='http://foo.com:8080/'>non-default http port</a></p>
+{% endblock %}

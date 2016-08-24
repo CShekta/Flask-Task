@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+	{{ super() }}
+	<meta charset={{charset}}/>
+{% endblock %}
+{% block content %}
+	<p>This is a page that should be presented as encoded in {{ charset }}.
+		The list of the encodings we test is roughly based on
+		<a href='http://en.wikipedia.org/wiki/Character_encoding'>this
+		Wikipedia page</a>.
+  </p>
+	<p>
+		Here is a sampling of some of it's characters:
+		{% if charset == 'ISO-8859-1' %}
+			"héllø, höw ârè yØÜ today?"
+		{% elif charset == 'ISO-8859-10' %}
+			"ÔÕÖŨØŲÚÛÜÝÞ"
+		{% elif charset == 'ISO-8859-11' %}
+			"ฑฒณดตถทธนบปผฝพ"
+		{% elif charset == 'ISO-8859-13' %}
+			"ĆÄÅĘĒČÉŹĖĢĶĪ"
+		{% elif charset == 'ISO-8859-15' %}
+			"áâãäåæçèéêëìíî"
+		{% elif charset == 'ISO-8859-16' %}
+			"ÒÓÔŐÖŚŰÙÚÛÜĘȚ"
+		{% elif charset == 'ISO-8859-2' %}
+			"Ănď höw very ňice ţo meet yoű"
+		{% elif charset == 'ISO-8859-3' %}
+			"Ĝo téämß!"
+		{% elif charset == 'ISO-8859-4' %}
+			"öķie dôkæ"
+		{% elif charset == 'ISO-8859-5' %}
+			"ЪЫЬЭЮЯабвгдежз"
+		{% elif charset == 'ISO-8859-6' %}
+			"دان لكوك"
+		{% elif charset == 'ISO-8859-7' %}
+			"δεζηθικλμ"
+		{% elif charset == 'ISO-8859-8' %}
+			"דהוזחטיךכל"
+		{% elif charset == 'ISO-8859-9' %}
+			"ÃÄÅÆÇÈÉÊËÌÍ"
+		{% elif charset == 'windows-1250' %}
+			"Ănď höw very ňice ţo meet yoű"
+		{% elif charset == 'windows-1251' %}
+			"ЪЫЬЭЮЯабвгдежз"
+		{% elif charset == 'windows-1252' %}
+			"héllø, höw ârè yØÜ today?"
+		{% elif charset == 'windows-1253' %}
+			"δεζηθικλμ"
+		{% elif charset == 'windows-1254' %}
+			"ÃÄÅÆÇÈÉÊËÌÍ"
+		{% elif charset == 'windows-1250' %}
+			"héllø, höw ârè yØÜ today?"
+		{% elif charset == 'windows-1251' %}
+			"ЪЫЬЭЮЯабвгдежз"
+		{% elif charset == 'windows-1252' %}
+			"héllø, höw ârè yØÜ today?"
+		{% elif charset == 'windows-1253' %}
+			"δεζηθικλμ"
+		{% elif charset == 'windows-1254' %}
+			"ÃÄÅÆÇÈÉÊËÌÍ"
+		{% elif charset == 'windows-1255' %}
+			"דהוזחטיךכל"
+		{% elif charset == 'windows-1256' %}
+			"دان لكوك"
+		{% elif charset == 'windows-1257' %}
+			"ĆÄÅĘĒČÉŹĖĢĶĪ"
+		{% elif charset == 'windows-1258' %}
+			"ÓÔƠÖ×ØÙÚÛÜƯ"
+		{% elif charset == 'Shift JIS' %}
+			">公益社団法人 日本舞踊協会｜公演・事業紹介｜第55回　日本舞踊協会公演"
+		{% else %}
+			No Sample Available
+		{% endif %}
+	</p>
+{% endblock %}

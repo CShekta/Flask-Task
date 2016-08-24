@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+  <p><a href='#'>Empty fragment-only</a></p>
+  <p><a href='#jump'>Non-empty framgent-only</a></p>
+  <p><a>A link to myself.</a></p>
+  <p><a name='jump'>Has no href.</a></p>
+  <p><a href='javascript:console.log("hello")'>This is a javascript link.</a></p>
+{% endblock %}

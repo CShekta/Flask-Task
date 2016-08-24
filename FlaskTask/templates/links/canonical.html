@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel='canonical' href='http://localhost:5000/canonical-target' />
+{% endblock %}
+{% block content %}
+  {% include "links.html" %}
+{% endblock %}

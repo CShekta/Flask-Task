@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <base href="/relative-base/" />
+{% endblock %}
+{% block content %}
+  <h4>Base URL is relative</h4>
+    <p><a href="whiz">but our links</a></p>
+    <p><a href="bar">shouldn't be.</a></p>
+{% endblock %}
